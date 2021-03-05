@@ -6,6 +6,13 @@ import java.util.List;
 import net.gf.exception.WrongRangeException;
 import net.gf.model.PrimeError;
 
+/**
+ * This class is the algorithm of computing prime number.
+ * The algorithm is testing whether the number is a multiple of any 
+ * integer between 2 and number's square root.
+ * @author gfeng
+ *
+ */
 public final class PrimeFinder {
 	private final long lower;
 	private final long upper;

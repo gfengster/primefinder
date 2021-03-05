@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+/**
+ * Wrong url, internal error or unknown error occur, service will direct to here.
+ * @author gfeng
+ *
+ */
 @Controller
 public class PrimeErrorController implements ErrorController {
 	
