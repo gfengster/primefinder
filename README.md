@@ -8,19 +8,18 @@ The service can take the maximum upper number is long.
 
 1. Checkout the code
 
-   git clone 
+   `https://github.com/gfengster/primefinder.git` 
 
-   2. Build the project
+2. Build the project
 
-      `mvn clean package`
+   `mvn clean package`
 
-   3. Run the application
+3. Run the application<br>
+   Start up the application by running one of the following command in terminal
 
-      Start up the application by running one of the following command in terminal
+   3.1 `java -jar ./target/primefinder-0.0.1-SNAPSHOT.jar`
 
-      3.1 `java -jar ./target/primefinder-0.0.1-SNAPSHOT.jar`
-
-      3.2 `mvn spring-boot:run`
+   3.2 `mvn spring-boot:run`
 
 4. API endpoints
 
@@ -42,22 +41,17 @@ The service can take the maximum upper number is long.
 
    `http://localhost:8080/prime/50/97` will return<br>
 
-   `{"lower":50,"upper":97,"primes":[53,59,61,67,71,73,79,83,89,97]}`<br>
+   `{"lower":50,"upper":97,"primes":[53,59,61,67,71,73,79,83,89,97]}`
 
-   5. Exception handling
+5. Exception handling
+   5.1 If upper number is less than lower, an error object will be returned.
+   `http://localhost:8080/prime/50/23` will return<br>
+   `{"lower":50,"upper":23,"error":"The range is invalid"}`
 
-      5.1 If upper number is less than lower, an error object will be returned.
+   5.2 If one of number is less than 0, an error object will be returned.
+   `http://localhost:8080/prime/-5/10` will return<br>
+   `{"lower":-5,"upper":10,"error":"The range is invalid"}`
 
-      `http://localhost:8080/prime/50/23` will return<br>
-
-      `{"lower":50,"upper":23,"error":"The range is invalid"}`
-
-      5.2 If one of number is less than 0, an error object will be returned.
-
-      `http://localhost:8080/prime/-5/10` will return<br>
-
-      `{"lower":-5,"upper":10,"error":"The range is invalid"}`
-
-      5.3 If endpoint is invalid, an error page will be returned.
-
-      `http://localhost:8080/primes/5/10` will return 404 NOT_FOUND.
+   5.3 If endpoint is invalid, an error page will be returned.
+   `http://localhost:8080/primes/5/10` will return 404 NOT_FOUND.
+   
