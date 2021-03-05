@@ -2,7 +2,7 @@
 
 The service is a Restful API and coded in Java with SpringBoot. Its build tool is Maven.
 
-The project includes algorithm, integration tests. The result of the service compares to an external resources https://primes.utm.edu/howmany.html and https://miniwebtool.com/list-of-prime-numbers. The CI/CD pipeline is built in GitHub. The project was developed, tested on Ubuntu 20.04.2 LTS.
+The project includes algorithm, integration tests. The result of the service compares to external resources https://primes.utm.edu/howmany.html and https://miniwebtool.com/list-of-prime-numbers. The CI/CD pipeline is built in GitHub. The project was developed, tested on Ubuntu 20.04.2 LTS.
 
 The service can take the maximum upper number is long. 
 
