@@ -29,7 +29,7 @@ jobs:
         with:
           java-version: 14
 
-      - name: Maventest and build
+      - name: Maven test and build
         run: mvn -B test package --file pom.xml
           
       - name: Build container image

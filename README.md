@@ -8,7 +8,7 @@ The service can take the maximum upper number is long.
 
 1. Checkout the code
 
-   `https://github.com/gfengster/primefinder.git` 
+   `git clone https://github.com/gfengster/primefinder.git` 
 
 2. Build the project
 
