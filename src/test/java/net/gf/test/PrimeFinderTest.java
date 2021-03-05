@@ -14,6 +14,12 @@ import org.junit.jupiter.api.Test;
 import net.gf.exception.WrongRangeException;
 import net.gf.prime.PrimeFinder;
 
+/**
+ * The test compares the data from external resources 
+ * https://primes.utm.edu/howmany.html and https://miniwebtool.com/list-of-prime-numbers
+ * @author gfeng
+ *
+ */
 class PrimeFinderTest {
 
 	@Test
