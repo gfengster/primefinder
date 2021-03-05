@@ -60,4 +60,45 @@ public final class PrimeFinder {
 
 		return primes;
 	}
+	
+	public long  count(){
+		long result = 0;
+		
+		if (upper < 2)
+			return result;
+		
+		long guess = lower;
+		
+		if (lower <= 2 && upper >= 2) {
+			result++;
+			guess = 3;
+		} 
+		
+		if (guess % 2 == 0) {
+			guess++;
+		}
+		
+		boolean isPrime;
+		long guessRange;
+		
+		while (guess <= upper) {
+			isPrime = true;
+
+			guessRange = (long)Math.sqrt(guess);
+			for (int i = 2; i <= guessRange; i++) {
+				// condition for nonprime number
+				if (guess%i == 0) {
+					isPrime = false;
+					break;
+				}
+			}
+
+			if (isPrime)
+				result++;
+
+			guess += 2;
+		}
+
+		return result;
+	}
 }

@@ -172,4 +172,56 @@ class PrimeFinderTest {
 		
 		assertTrue(exception.getMessage().contains("The range is invalid"));
 	}
+	
+	@Test
+	void testCountOnly() {
+		final Map<Long, Long> primeNumberMap = new HashMap<>();
+		primeNumberMap.put(10l, 4l);
+		primeNumberMap.put(100l, 25l);
+		primeNumberMap.put(1000l, 168l);
+		primeNumberMap.put(10000l, 1229l);
+		primeNumberMap.put(100000l, 9592l);
+		primeNumberMap.put(1000000l, 78498l);
+		primeNumberMap.put(10000000l, 664579l);
+		primeNumberMap.put(100000000l, 5761455l);
+		primeNumberMap.put(1000000000l, 50847534l);
+		primeNumberMap.put(10000000000l, 455052511l);
+		primeNumberMap.put(100000000000l, 4118054813l);
+		primeNumberMap.put(1000000000000l, 37607912018l);
+		primeNumberMap.put(10000000000000l, 346065536839l);
+		primeNumberMap.put(100000000000000l, 3204941750802l);
+		primeNumberMap.put(1000000000000000l, 29844570422669l);
+		primeNumberMap.put(10000000000000000l, 279238341033925l);
+		primeNumberMap.put(100000000000000000l, 2623557157654233l);
+		primeNumberMap.put(1000000000000000000l, 24739954287740860l);
+//		primeNumberMap.put(10000000000000000000l, 234057667276344607l);
+//		primeNumberMap.put(100000000000000000000l, 2220819602560918840l);
+//		primeNumberMap.put(1000000000000000000000l, 21127269486018731928l);
+//		primeNumberMap.put(10000000000000000000000l, 201467286689315906290l);
+//		primeNumberMap.put(100000000000000000000000l, 1925320391606803968923l);
+//		primeNumberMap.put(1000000000000000000000000l, 18435599767349200867866l);
+//		primeNumberMap.put(10000000000000000000000000l, 176846309399143769411680l);
+
+		primeNumberMap.entrySet().stream().forEach(e -> {
+			long lower = 1;
+			long upper = e.getKey();
+			long numberOfPrime = e.getValue();
+			
+			if (upper != 10) {
+				lower = (long)upper/10;
+				numberOfPrime = numberOfPrime - primeNumberMap.get(lower);
+			}
+			
+			System.out.print(upper + " ");
+			long start = System.currentTimeMillis();
+			
+			PrimeFinder finder = new PrimeFinder(lower, upper);
+			long primes = finder.count();
+			System.out.print(upper + " " + numberOfPrime + " " + primes);
+			System.out.println(" " + (System.currentTimeMillis() - start)/1000);
+			assertTrue(primes == numberOfPrime,
+					String.format("Actual number of prime  %d should be %d in range %d",
+							primes, numberOfPrime, upper));
+		});
+	}
 }
