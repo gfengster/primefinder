@@ -2,6 +2,11 @@ package net.gf.exception;
 
 import net.gf.model.PrimeError;
 
+/**
+ * A {@link RuntiimeException} for invalid input number.
+ * @author gfeng
+ *
+ */
 public class WrongRangeException extends RuntimeException {
 
 	private static final long serialVersionUID = -5160154600286047031L;

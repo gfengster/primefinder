@@ -5,6 +5,13 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * A class holds error message 
+ * The service returns this object to clients if serving fail.
+ * 
+ * @author gfeng
+ *
+ */
 @ToString
 public class PrimeError {
 	@Getter

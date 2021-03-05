@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import net.gf.exception.WrongRangeException;
 import net.gf.model.PrimeError;
 
+/**
+ * If the input number is invalid, the service will redirect to here.
+ * @author gfeng
+ *
+ */
 @ControllerAdvice
 public class PrimeExceptionController {
 

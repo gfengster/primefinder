@@ -22,6 +22,11 @@ import net.gf.exception.WrongRangeException;
 import net.gf.model.PrimeData;
 import net.gf.prime.PrimeFinder;
 
+/**
+ * Endpoint services collection  
+ * @author gfeng
+ *
+ */
 @RestController
 @RequestMapping("/prime")
 public class PrimeController {
@@ -50,7 +55,7 @@ public class PrimeController {
 	}
 	
 	@GetMapping("/{upper}")
-	public PrimeData findFromZero(@PathVariable(name="upper") final long upper) throws WrongRangeException {
+	public PrimeData findToUpper(@PathVariable(name="upper") final long upper) throws WrongRangeException {
 		return getPrimeData(1, upper);
 	}
 	
@@ -61,6 +66,7 @@ public class PrimeController {
 		
 		final PrimeData data = new PrimeData(lower, upper);
 		
+		// Find prime in one thread or in multithreads
 		if((upper - lower) < processCount) {
 			data.setPrimes(getPrimeListSingleThread(lower, upper));
 		} else {
@@ -86,6 +92,7 @@ public class PrimeController {
 	private List<Long>  getPrimeDataMultiThreads(final long lower, final long upper) {
 		final List<Long> allPrimes = new ArrayList<>();
 		
+		// Try to make same range in each thread. 
 		final int numThreads = (int)(upper -lower)/processCount + 1;
 		final int actualCount = (int)(upper -lower)/numThreads;
 		
@@ -120,11 +127,14 @@ public class PrimeController {
 		return allPrimes;
 	}
 	
+	/**
+	 * An inner class for {@link CompletableFuture}
+	 */
 	private class PrimeSupplier implements Supplier<List<Long>> {
 		private final long lower;
 		private final long upper;
 		
-		PrimeSupplier(long lower, long upper) {
+		private PrimeSupplier(final long lower, final long upper) {
 			this.lower = lower;
 			this.upper = upper;
 		}
@@ -133,6 +143,5 @@ public class PrimeController {
 		public List<Long> get() {
 			return getPrimeListSingleThread(this.lower, this.upper);
 		}
-		
 	}
 }
