@@ -148,7 +148,7 @@ class PrimeFinderTest {
 		primeNumberMap.put(10000l, 1229l);
 		primeNumberMap.put(100000l, 9592l);
 		primeNumberMap.put(1000000l, 78498l);
-//		primeNumberMap.put(10000000l, 664579l);
+		primeNumberMap.put(10000000l, 664579l);
 //		primeNumberMap.put(100000000l, 5761455l);
 
 		primeNumberMap.entrySet().parallelStream().forEach(e -> {

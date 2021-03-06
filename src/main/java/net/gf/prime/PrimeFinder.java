@@ -51,7 +51,7 @@ public final class PrimeFinder {
 			isPrime = true;
 
 			guessRange = (long)Math.sqrt(guess);
-			for (int i = 2; i <= guessRange; i++) {
+			for (int i = 3; i <= guessRange; i+=2) {
 				// condition for nonprime number
 				if (guess%i == 0) {
 					isPrime = false;
