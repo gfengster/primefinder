@@ -43,29 +43,36 @@ public final class PrimeFinder {
 		if (guess % 2 == 0) {
 			guess++;
 		}
-		
-		boolean isPrime;
-		long guessRange;
-		
+
 		while (guess <= upper) {
-			isPrime = true;
-
-			guessRange = (long)Math.sqrt(guess);
-			for (int i = 3; i <= guessRange; i+=2) {
-				// condition for nonprime number
-				if (guess%i == 0) {
-					isPrime = false;
-					break;
-				}
-			}
-
-			if (isPrime)
+			if (isPrime(guess))
 				primes.add(guess);
 
 			guess += 2;
 		}
 
 		return primes;
+	}
+	
+	private static boolean isPrime(long guess) {
+		if (guess <= 1 || guess == 4 || guess%2 == 0) 
+            return false; 
+        
+		if (guess <= 3) 
+            return true; 
+		
+		boolean isPrime = true;
+
+		long guessRange = (long)Math.sqrt(guess);
+		for (long i = 3; i <= guessRange; i+=2) {
+			// condition for nonprime number
+			if (guess%i == 0) {
+				isPrime = false;
+				break;
+			}
+		}
+
+		return isPrime;
 	}
 	
 	public long  count(){
@@ -84,23 +91,9 @@ public final class PrimeFinder {
 		if (guess % 2 == 0) {
 			guess++;
 		}
-		
-		boolean isPrime;
-		long guessRange;
-		
+
 		while (guess <= upper) {
-			isPrime = true;
-
-			guessRange = (long)Math.sqrt(guess);
-			for (int i = 2; i <= guessRange; i++) {
-				// condition for nonprime number
-				if (guess%i == 0) {
-					isPrime = false;
-					break;
-				}
-			}
-
-			if (isPrime)
+			if (isPrime(guess))
 				result++;
 
 			guess += 2;
