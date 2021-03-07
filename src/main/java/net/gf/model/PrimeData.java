@@ -27,7 +27,6 @@ public class PrimeData {
 	
 	@Getter
 	@Setter
-	@NonNull
 	private List<Long> primes;
 	
 	public PrimeData() {

@@ -5,8 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
@@ -112,6 +118,31 @@ class RestfulPrimeApplicationTests {
 				e1.printStackTrace();
 			}
 		});
+	}
+	
+	@Test
+	void testPostEndPoint() throws URISyntaxException, JsonMappingException, JsonProcessingException {
+		List<Long> expected = Arrays.stream(
+				new long[] {97,101,103,107,109,113,127,131,137,139,149}).boxed().collect(Collectors.toList());
+
+		String url = "http://localhost:" + port + "/prime";
+		
+		PrimeData data = new PrimeData(95, 150);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "application/json");
+		HttpEntity<PrimeData> request = new HttpEntity<>(data, headers);
+		
+		ResponseEntity<String> response = restTemplate.postForEntity(url, request,  String.class);
+		assertEquals(response.getStatusCode(), HttpStatus.OK);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		data = objectMapper.readValue(response.getBody(), PrimeData.class);
+		List<Long> primes = data.getPrimes();
+		
+		assertTrue(expected.size() == primes.size() && expected.containsAll(primes) && primes.containsAll(expected), 
+				String.format("Actual %s is not equals expected %s", primes, expected));
+		
 	}
 	
 	@Test

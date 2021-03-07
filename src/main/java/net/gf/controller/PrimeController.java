@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,6 +59,14 @@ public class PrimeController {
 	@GetMapping("/{upper}")
 	public PrimeData findToUpper(@PathVariable(name="upper") final long upper) throws WrongRangeException {
 		return getPrimeData(1, upper);
+	}
+	
+	@PostMapping("")
+	public PrimeData find(@RequestBody PrimeData data) throws WrongRangeException {
+		if (data.getLower() == 0)
+			return getPrimeData(1, data.getUpper());
+		else
+			return getPrimeData(data.getLower(), data.getUpper());
 	}
 	
 	private PrimeData getPrimeData(final long lower, final long upper) {

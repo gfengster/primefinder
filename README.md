@@ -26,7 +26,7 @@ The service can take the maximum upper number is long.
 
 4. API endpoints
 
-   4.1 Endpoint "/prime/{upper}"
+   4.1 Endpoint "/prime/{upper}", method is GET
 
    This endpoint will return a json object with prime number in range of 1 to upper number.<br>
 
@@ -36,7 +36,7 @@ The service can take the maximum upper number is long.
 
    `{"lower":1,"upper":10,"primes":[2,3,5,7]}`
 
-   4.2 Endpoint "/prime/{lower}/{upper}"
+   4.2 Endpoint "/prime/{lower}/{upper}", method is GET
 
    This endpoint will return a json object with prime number in range between lower and upper number.<br>
 
@@ -45,6 +45,16 @@ The service can take the maximum upper number is long.
    `http://localhost:8080/prime/50/97` will return<br>
 
    `{"lower":50,"upper":97,"primes":[53,59,61,67,71,73,79,83,89,97]}`
+
+   4.3 Endpoint "/prime", method is POST
+
+   The request must have a request body. The body defines lower and upper number.<br>
+
+   For example:
+
+   `curl -X POST -H "Content-Type: application/json" -d '{"lower":95,"upper":150}' http://localhost:8080/prime` will return<br>
+
+   `{"lower":95,"upper":150,"primes":[97,101,103,107,109,113,127,131,137,139,149]}`
 
 5. Exception handling
 
